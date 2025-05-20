@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Udyog Saarthi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('https://img.freepik.com/free-vector/cerulean-blue-curve-frame-template_53876-99029.jpg?ga=GA1.1.943975380.1734672468&semt=ais_hybrid') no-repeat center center/cover;
+      text-align: center;
+    }
+    .navbar {
+      background-color: #007bff;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-around;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .navbar a:hover {
+      color: #ffcc00;
+    }
+    .container {
+      display: flex;
+      margin: 20px;
+      gap: 20px;
+    }
+    .filter-box, .job-box {
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      background: white;
+    }
+    .filter-box {
+      width: 30%;
+      background: #f9f9f9;
+    }
+    .job-box {
+      width: 70%;
+    }
+    .job-card {
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      background: #eef7ff;
+      transition: 0.3s;
+    }
+    .job-card:hover {
+      background: #d0ebff;
+      transform: scale(1.02);
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .search-box {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .search-box input {
+      width: 60%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+  </style>
+
+  <script>
+    function redirectToList() {
+      window.location.href = "list.html";
+    }
+
+    function filterJobs() {
+      let input = document.getElementById("searchInput").value.toLowerCase();
+      let cards = document.getElementsByClassName("job-card");
+
+      for (let i = 0; i < cards.length; i++) {
+        let cardText = cards[i].innerText.toLowerCase();
+        if (cardText.includes(input)) {
+          cards[i].style.display = "block";
+        } else {
+          cards[i].style.display = "none";
+        }
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Udyog Saarthi</h1>
+
+  <div class="navbar">
+    <a href="home.html">Home</a>
+    <a href="govt_job.html">Govt Jobs</a>
+    <a href="course.html">Courses</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="container">
+
+    <!-- Filter box (First container) -->
+    <div class="filter-box">
+      <h2>Select by Disability</h2>
+      <p>People with disability and Govt ID can search here.</p>
+
+      <label for="disability">Select Disability:</label><br>
+      
+      <button onclick="redirectToList()">Select Disability Jobs</button>
+    </div>
+
+    <!-- Jobs box (Second container) -->
+    <div class="job-box">
+      <h2>Job Notifications</h2>
+
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search Job Description..." onkeyup="filterJobs()">
+      </div>
+
+      <div class="job-card">
+        <h3>Software Engineer - Govt of India</h3>
+        <p>Location: Delhi | Full Time</p>
+        <button>Apply Now</button>
+      </div>
+
+      <div class="job-card">
+        <h3>Data Analyst - State Govt</h3>
+        <p>Location: Bangalore | Work from Home</p>
+        <button>Apply Now</button>
+      </div>
+
+      <div class="job-card">
+        <h3>Marketing Executive - PSU</h3>
+        <p>Location: Mumbai | Part Time</p>
+        <button>Apply Now</button>
+      </div>
+
+    </div>
+
+  </div>
+</body>
+</html>
