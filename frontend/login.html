@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - Udyog Saarthi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('https://img.freepik.com/free-vector/cerulean-blue-curve-frame-template_53876-99029.jpg?ga=GA1.1.943975380.1734672468&semt=ais_hybrid') no-repeat center center/cover;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      width: 300px;
+      text-align: left;
+    }
+    .login-container h2 {
+      text-align: center;
+    }
+    .login-container label {
+      font-weight: bold;
+    }
+    .login-container input {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .login-container button {
+      width: 100%;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+    .login-container button:hover {
+      background-color: #218838;
+    }
+    .login-container p {
+      text-align: center;
+    }
+  </style>
+
+  <script>
+    function validateLogin() {
+      let email = document.getElementById("email").value.trim();
+      let password = document.getElementById("password").value;
+
+      // Fetch details from localStorage
+      let storedEmail = localStorage.getItem("userEmail");
+      let storedPassword = localStorage.getItem("userPassword");
+
+      if (email === storedEmail && password === storedPassword) {
+        alert("Login successful!");
+        // Redirect to a dashboard or home page
+        window.location.href = "home.html"; 
+      } else {
+        alert("Invalid email or password. Please try again.");
+      }
+      return false; // prevent form submission
+    }
+  </script>
+
+</head>
+
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form onsubmit="return validateLogin()">
+      <label for="email">Email:</label>
+      <input type="email" id="email" placeholder="Enter your email">
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" placeholder="Enter your password">
+
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="signup.html">Signup</a></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udyog Saarthi</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://img.freepik.com/free-vector/cerulean-blue-curve-frame-template_53876-99029.jpg?ga=GA1.1.943975380.1734672468&semt=ais_hybrid') no-repeat center center/cover;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        .entry-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+        .entry-container:hover {
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        .entry-container img {
+            width: 180px;
+            height: auto;
+            margin-right: 25px;
+        }
+        h1 {
+            font-size: 60px;
+            color: #333;
+            margin: 0;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector(".entry-container").addEventListener("click", function () {
+                window.location.href = "index.html"; // Change this to your next page
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="entry-container">
+        <img src="C:\Users\rahul\Downloads\ImageGen Mar 16, 2025, 11_53_11 AM.png" alt="Udyog Saarthi Logo">
+        <h1>Udyog Saarthi</h1>
+    </div>
+</body>
+</html>

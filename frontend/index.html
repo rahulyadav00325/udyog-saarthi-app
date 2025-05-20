@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Udyog Saarthi</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://img.freepik.com/free-vector/cerulean-blue-curve-frame-template_53876-99029.jpg?ga=GA1.1.943975380.1734672468&semt=ais_hybrid') no-repeat center center/cover;
+            text-align: center;
+        }
+        header {
+            font-size: 36px;
+            font-weight: bold;
+            color: #004080;
+            margin-top: 30px;
+        }
+        .slider {
+            width: 100%;
+            max-width: 800px;
+            height: 70vh;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        .slides {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            animation: slide 6s infinite;
+        }
+        .slides img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .slider-label {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 10px 0;
+            font-size: 20px;
+        }
+        @keyframes slide {
+            0% { transform: translateX(0%); }
+            33% { transform: translateX(-100%); }
+            66% { transform: translateX(-200%); }
+            67% { transform: translateX(-200%); }
+            100% { transform: translateX(0%); }
+        }
+        .login-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .btn {
+            display: inline-block;
+            width: 180px;
+            padding: 12px;
+            font-size: 18px;
+            color: white;
+            background-color: #004080;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            margin: 0 10px;
+        }
+        .btn:hover {
+            background-color: #0055a4;
+        }
+        .divider {
+            width: 1px;
+            height: 40px;
+            background-color: #ccc;
+            margin: 0 15px;
+        }
+        .signup-container {
+            display: flex;
+            align-items: center;
+        }
+        .signup-text {
+            font-size: 18px;
+            margin-right: 10px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>Find Your Dream Job</header>
+    <div class="slider">
+        <div class="slides">
+            <img src="C:\Users\rahul\Downloads\ImageGen Mar 18, 2025, 12_05_44 PM.png" alt="Slide 1">
+            <img src="C:\Users\rahul\Downloads\ImageGen Mar 18, 2025, 12_06_23 PM.png" alt="Slide 2">
+            <img src="C:\Users\rahul\Downloads\ImageGen Mar 18, 2025, 04_22_41 PM.png" alt="Slide 3">
+        </div>
+    </div>
+    <div class="login-container">
+        <a href="login.html" class="btn">Login</a>
+        <div class="divider"></div>
+        <div class="signup-container">
+            <span class="signup-text">New account?</span>
+            <a href="signup.html" class="btn">Sign Up</a>
+        </div>
+    </div>
+</body>
+</html>

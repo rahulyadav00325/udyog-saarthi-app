@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Udyog Saarthi App</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: url('https://img.freepik.com/free-vector/cerulean-blue-curve-frame-template_53876-99029.jpg') no-repeat center center / cover;
+      min-height: 100vh;
+      padding: 40px;
+    }
+    .app-container {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .left-panel {
+      width: 305px;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    }
+    .right-panel {
+      flex: 1;
+      max-width: 70%;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    }
+    .form-section { display: none; }
+    .form-section.active { display: block; }
+    .job-card {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .job-card h5 { margin-bottom: 5px; }
+    .job-note { font-size: 0.9rem; color: #555; }
+  </style>
+</head>
+<body>
+  <h1 class="text-center fw-bold mb-5 text-dark">Udyog Saarthi App</h1>
+
+  <div class="app-container">
+
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <div class="d-flex justify-content-between mb-3">
+        <button class="btn btn-outline-primary btn-sm" onclick="showForm('login')">Login</button>
+        <button class="btn btn-outline-success btn-sm" onclick="showForm('register')">Register</button>
+        <button class="btn btn-outline-warning btn-sm" onclick="showForm('forgot')">Forgot?</button>
+      </div>
+
+      <!-- Login Form -->
+      <div id="loginForm" class="form-section active">
+        <h5>Login</h5>
+        <form onsubmit="handleLogin(event)">
+          <input type="text" id="loginId" class="form-control my-2" placeholder="ID Number" required>
+          <input type="password" id="loginPw" class="form-control my-2" placeholder="Password" required>
+          <button type="submit" class="btn btn-primary w-100">Login</button>
+          <p class="text-danger mt-2" id="loginError" style="display:none;">Invalid credentials</p>
+        </form>
+      </div>
+
+      <!-- Register Form -->
+      <div id="registerForm" class="form-section">
+        <h5>Register</h5>
+        <form>
+          <input type="text" class="form-control my-2" placeholder="Full Name" required>
+          <input type="email" class="form-control my-2" placeholder="Email" required>
+          <input type="text" class="form-control my-2" placeholder="ID Number" required>
+          <input type="password" class="form-control my-2" placeholder="Password" required>
+          <button class="btn btn-success w-100">Register</button>
+        </form>
+      </div>
+
+      <!-- Forgot Password Form -->
+      <div id="forgotForm" class="form-section">
+        <h5>Forgot Password</h5>
+        <form>
+          <input type="text" class="form-control my-2" placeholder="Enter your ID">
+          <button class="btn btn-warning w-100">Send Reset Link</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel" id="jobSection" style="display:none">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <label for="jobType" class="form-label">Job Type</label>
+          <select id="jobType" class="form-select" onchange="filterJobs()">
+            <option value="all">All</option>
+            <option value="gov">Government</option>
+            <option value="private">Private</option>
+          </select>
+        </div>
+        <div>
+          <label for="disabilityFilter" class="form-label">Min. Disability %</label>
+          <select id="disabilityFilter" class="form-select" onchange="filterJobs()">
+            <option value="0">All</option>
+            <option value="20">20%</option>
+            <option value="30">30%</option>
+            <option value="40">40%</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="jobList">
+        <!-- Jobs will be inserted here -->
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const jobs = [
+      { title: 'Support Technician', type: 'gov', company: 'Disability Services', location: 'Delhi', salary: '₹35,000', disability: 30, link: 'asdjob.html' },
+      { title: 'Data Entry Specialist', type: 'private', company: 'TechStart', location: 'Mumbai', salary: '₹28,000', disability: 25, link: '#' },
+      { title: 'Program Coordinator', type: 'gov', company: 'Autism Society', location: 'Bangalore', salary: '₹40,000', disability: 40, link: '#' },
+      { title: 'Customer Service Representative', type: 'private', company: 'Digital Solutions', location: 'Hyderabad', salary: '₹32,000', disability: 30, link: '#' },
+      { title: 'Web Accessibility Assistant', type: 'gov', company: 'GovTech', location: 'Chennai', salary: '₹38,000', disability: 25, link: '#' },
+      { title: 'Content Analyst', type: 'private', company: 'InfoWorks', location: 'Pune', salary: '₹31,000', disability: 20, link: '#' },
+      { title: 'Accessibility Tester', type: 'gov', company: 'Assistive Technologies', location: 'Kolkata', salary: '₹33,000', disability: 30, link: '#' },
+      { title: 'Administrative Assistant', type: 'private', company: 'Business Solutions', location: 'Ahmedabad', salary: '₹27,000', disability: 20, link: '#' },
+      { title: 'Technical Support (Non-Verbal)', type: 'gov', company: 'State Social Services', location: 'Lucknow', salary: '₹34,000', disability: 30, link: '#' },
+      { title: 'Project Manager', type: 'private', company: 'TechEdge', location: 'Mumbai', salary: '₹45,000', disability: 30, link: '#' }
+    ];
+
+    function showForm(type) {
+      document.querySelectorAll('.form-section').forEach(f => f.classList.remove('active'));
+      document.getElementById(type + 'Form').classList.add('active');
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const id = document.getElementById('loginId').value;
+      const pw = document.getElementById('loginPw').value;
+      if (id === 'user123' && pw === 'pass123') {
+        document.getElementById('loginError').style.display = 'none';
+        document.getElementById('jobSection').style.display = 'block';
+        filterJobs();
+      } else {
+        document.getElementById('loginError').style.display = 'block';
+        document.getElementById('jobSection').style.display = 'none';
+      }
+    }
+
+    function filterJobs() {
+      const type = document.getElementById('jobType').value;
+      const minDisability = parseInt(document.getElementById('disabilityFilter').value);
+      const jobList = document.getElementById('jobList');
+      jobList.innerHTML = '';
+
+      jobs.filter(j => (type === 'all' || j.type === type) && j.disability >= minDisability).forEach(job => {
+        jobList.innerHTML += `
+          <div class="job-card">
+            <h5><a href="${job.link}" target="_blank">${job.title}</a></h5>
+            <p>${job.company} | ${job.location} | <strong>${job.salary}</strong></p>
+            <p class="job-note">For Autism Spectrum Disorder | Min. Disability: ${job.disability}%</p>
+          </div>`;
+      });
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
